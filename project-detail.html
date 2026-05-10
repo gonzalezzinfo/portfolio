@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='15' y='15' width='6' height='6' rx='1' fill='%2300D4FF' fill-opacity='0.2'%3E%3C/rect%3E%3Crect x='79' y='79' width='6' height='6' rx='1' fill='%2300D4FF' fill-opacity='0.2'%3E%3C/rect%3E%3Cpath d='M22 30C18 30 15 33 15 37V46C15 48 13 50 11 50C13 50 15 52 15 54V63C15 67 18 70 22 70' stroke='%2300D4FF' stroke-width='2.5' stroke-linecap='round' opacity='0.6'%3E%3C/path%3E%3Cpath d='M78 30C82 30 85 33 85 37V46C85 48 87 50 89 50C87 50 85 52 85 54V63C85 67 82 70 78 70' stroke='%2300D4FF' stroke-width='2.5' stroke-linecap='round' opacity='0.6'%3E%3C/path%3E%3Cpath d='M70 38V32H35V68H65V52H52' stroke='%2300D4FF' stroke-width='4.5' stroke-linejoin='round' opacity='0.4'%3E%3C/path%3E%3Cpath d='M32 32H55C62 32 67 37 67 43.5C67 50 62 55 55 55H32V68' stroke='%2300D4FF' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M52 55L67 68' stroke='%2300D4FF' stroke-width='9' stroke-linecap='round'%3E%3C/path%3E%3Crect x='70' y='52' width='6' height='6' fill='%2300D4FF'%3E%3C/rect%3E%3C/svg%3E" />
+  <title>Projeto - Rodrigo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #00D4FF;
+      --accent2: #3fb950;
+      --text: #e6edf3;
+      --muted: #8b949e;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 40px;
+    }
+    .logo svg {
+      height: 40px;
+      width: auto;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+    nav ul a:hover { color: var(--accent); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .project-header {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background: rgba(0,212,255,.1);
+      color: var(--accent);
+      border: 1px solid rgba(0,212,255,.3);
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.6rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+    }
+    .btn-primary:hover { background: #33DDFF; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #0d1117;
+    }
+
+    .project-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .project-description {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-description h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .project-description p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+    }
+
+    .error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 640px) {
+      .project-title { font-size: 2rem; }
+      .project-meta { flex-direction: column; gap: 0.5rem; }
+      .project-links { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">
+      <svg width="500" height="100" viewBox="0 0 500 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(10, 15) scale(0.7)">
+          <path d="M22 30C18 30 15 33 15 37V63C15 67 18 70 22 70" stroke="#00D4FF" stroke-width="3" opacity="0.5"></path>
+          <path d="M78 30C82 30 85 33 85 37V63C85 67 82 70 78 70" stroke="#00D4FF" stroke-width="3" opacity="0.5"></path>
+          <path d="M32 32H55C67 32 67 55 55 55H32V68" stroke="#00D4FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M52 55L67 68" stroke="#00D4FF" stroke-width="10" stroke-linecap="round"></path>
+          <rect x="68" y="52" width="8" height="8" fill="#00D4FF"></rect>
+        </g>
+        <text x="90" y="62" fill="white" style="font-family: 'Segoe UI', Arial, sans-serif; font-weight: 500; font-size: 42px; letter-spacing: -1.5px;">Rodrigo</text>
+        <text x="250" y="62" fill="#00D4FF" style="font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 42px; letter-spacing: -1px;">Gonzalez</text>
+        <rect x="90" y="78" width="300" height="1" fill="white" opacity="0.1"></rect>
+        <rect x="90" y="78" width="50" height="1" fill="#00D4FF"></rect>
+      </svg>
+    </a>
+    <ul>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#projetos">Projetos</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <a href="index.html#projetos" class="back-link">← Voltar para projetos</a>
+
+    <div id="projectContent"></div>
+  </div>
+
+  <footer>
+    <p>Feito com ❤️ e muito ☕ por <strong>Rodrigo Gonzalez</strong> · 2026</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+    const contentDiv = document.getElementById('projectContent');
+
+    if (!projectId) {
+      contentDiv.innerHTML = '<div class="error">⚠️ ID do projeto não fornecido.</div>';
+    } else {
+      contentDiv.innerHTML = '<div class="loading">⏳ Carregando projeto...</div>';
+
+      fetch(`api/projects.php?action=get&id=${projectId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && data.data) {
+            const project = data.data;
+            
+            document.title = `${project.title} - Rodrigo Gonzalez`;
+            
+            const tagsHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            
+            const demoButton = project.demo_url 
+              ? `<a href="${project.demo_url}" target="_blank" class="btn btn-primary">🔗 Ver Demo</a>` 
+              : '';
+            
+            const githubButton = project.github_url 
+              ? `<a href="${project.github_url}" target="_blank" class="btn btn-outline">📁 GitHub</a>` 
+              : '';
+            
+            const imageHTML = project.image_url 
+              ? `<img src="${project.image_url}" alt="${project.title}" class="project-image">` 
+              : '';
+            
+            contentDiv.innerHTML = `
+              <div class="project-header">
+                <div class="project-icon">${project.icon}</div>
+                <h1 class="project-title">${project.title}</h1>
+                <div class="project-meta">
+                  <span>📅 Criado em ${new Date(project.created_at).toLocaleDateString('pt-BR')}</span>
+                  <span>🔄 Atualizado em ${new Date(project.updated_at).toLocaleDateString('pt-BR')}</span>
+                </div>
+                <div class="tags">${tagsHTML}</div>
+                <div class="project-links">
+                  ${demoButton}
+                  ${githubButton}
+                </div>
+              </div>
+
+              ${imageHTML}
+
+              <div class="project-description">
+                <h2>📝 Sobre o Projeto</h2>
+                <p>${project.short_description}</p>
+              </div>
+
+              <div class="project-description">
+                <h2>🔍 Detalhes</h2>
+                <p>${project.full_description || 'Descrição detalhada não disponível.'}</p>
+              </div>
+            `;
+          } else {
+            contentDiv.innerHTML = '<div class="error">❌ Projeto não encontrado.</div>';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          contentDiv.innerHTML = '<div class="error">❌ Erro ao carregar o projeto. Por favor, tente novamente.</div>';
+        });
+    }
+  </script>
+
+</body>
+</html>

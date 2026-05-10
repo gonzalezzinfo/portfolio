@@ -1,0 +1,8 @@
+api/config.php
+*.log
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.env

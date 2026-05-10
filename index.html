@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='15' y='15' width='6' height='6' rx='1' fill='%2300D4FF' fill-opacity='0.2'%3E%3C/rect%3E%3Crect x='79' y='79' width='6' height='6' rx='1' fill='%2300D4FF' fill-opacity='0.2'%3E%3C/rect%3E%3Cpath d='M22 30C18 30 15 33 15 37V46C15 48 13 50 11 50C13 50 15 52 15 54V63C15 67 18 70 22 70' stroke='%2300D4FF' stroke-width='2.5' stroke-linecap='round' opacity='0.6'%3E%3C/path%3E%3Cpath d='M78 30C82 30 85 33 85 37V46C85 48 87 50 89 50C87 50 85 52 85 54V63C85 67 82 70 78 70' stroke='%2300D4FF' stroke-width='2.5' stroke-linecap='round' opacity='0.6'%3E%3C/path%3E%3Cpath d='M70 38V32H35V68H65V52H52' stroke='%2300D4FF' stroke-width='4.5' stroke-linejoin='round' opacity='0.4'%3E%3C/path%3E%3Cpath d='M32 32H55C62 32 67 37 67 43.5C67 50 62 55 55 55H32V68' stroke='%2300D4FF' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M52 55L67 68' stroke='%2300D4FF' stroke-width='9' stroke-linecap='round'%3E%3C/path%3E%3Crect x='70' y='52' width='6' height='6' fill='%2300D4FF'%3E%3C/rect%3E%3C/svg%3E" />
+  <title>Rodrigo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #00D4FF;
+      --accent2: #3fb950;
+      --text: #e6edf3;
+      --muted: #8b949e;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 40px;
+    }
+    .logo svg {
+      height: 40px;
+      width: auto;
+    }
+    .logo span { color: var(--accent2); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+    nav ul a:hover { color: var(--accent); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse at top, #0d2137 0%, var(--bg) 70%);
+    }
+    .hero-content { max-width: 700px; }
+    .avatar {
+      width: 150px; height: 150px; border-radius: 50%;
+      border: 3px solid var(--accent);
+      margin: 0 auto 1.5rem;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      font-size: 3rem;
+    }
+    .avatar svg {
+      width: 100%;
+      height: 100%;
+    }
+    .hero-content h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: .5rem; }
+    .hero-content h1 span { color: var(--accent); }
+    .hero-content .role {
+      font-size: 1.2rem; color: var(--accent2); margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .hero-content p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: .7rem 1.6rem; border-radius: 8px; font-size: .95rem;
+      font-weight: 600; cursor: pointer; text-decoration: none; transition: all .2s;
+    }
+    .btn-primary { background: var(--accent); color: #0d1117; border: none; }
+    .btn-primary:hover { background: #33DDFF; }
+    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: #0d1117; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.8rem; font-weight: 700; margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .section-title span { color: var(--accent); margin-right: .3rem; font-size: 1.2rem; }
+
+    /* SOBRE */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .info-list { list-style: none; }
+    .info-list li {
+      padding: .5rem 0; border-bottom: 1px solid var(--border);
+      color: var(--muted); font-size: .95rem;
+    }
+    .info-list li strong { color: var(--text); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem; text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .skill-card .icon {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+    }
+    .skill-card .icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+    .skill-card .icon svg {
+      width: 48px;
+      height: 48px;
+    }
+    .skill-card p { font-size: .85rem; color: var(--muted); }
+
+    /* PROJETOS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .project-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .tag {
+      background: rgba(0,212,255,.1); color: var(--accent);
+      border: 1px solid rgba(0,212,255,.3);
+      border-radius: 20px; padding: .2rem .7rem; font-size: .75rem;
+    }
+    .project-links { display: flex; gap: .8rem; }
+    .project-links a { color: var(--muted); font-size: .85rem; text-decoration: none; transition: color .2s; }
+    .project-links a:hover { color: var(--accent); }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .pagination button {
+      padding: 0.6rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all .2s;
+      font-size: 0.9rem;
+    }
+
+    .pagination button:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pagination .page-info {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .loading-projects {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    /* CONTATO */
+    .contact-wrapper {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem; max-width: 600px; margin: 0 auto;
+    }
+    .contact-wrapper p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color .2s;
+    }
+    .contact-link:hover { border-color: var(--accent); }
+    .contact-link .icon { font-size: 1.4rem; }
+    .contact-link span { font-size: .9rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .85rem;
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" aria-label="Voltar para o início" class="logo">
+      <svg width="500" height="100" viewBox="0 0 500 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(10, 15) scale(0.7)">
+          <path d="M22 30C18 30 15 33 15 37V63C15 67 18 70 22 70" stroke="#00D4FF" stroke-width="3" opacity="0.5"></path>
+          <path d="M78 30C82 30 85 33 85 37V63C85 67 82 70 78 70" stroke="#00D4FF" stroke-width="3" opacity="0.5"></path>
+          <path d="M32 32H55C67 32 67 55 55 55H32V68" stroke="#00D4FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M52 55L67 68" stroke="#00D4FF" stroke-width="10" stroke-linecap="round"></path>
+          <rect x="68" y="52" width="8" height="8" fill="#00D4FF"></rect>
+        </g>
+        <text x="90" y="62" fill="white" style="font-family: 'Segoe UI', Arial, sans-serif; font-weight: 500; font-size: 42px; letter-spacing: -1.5px;">Rodrigo</text>
+        <text x="250" y="62" fill="#00D4FF" style="font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 42px; letter-spacing: -1px;">Gonzalez</text>
+        <rect x="90" y="78" width="300" height="1" fill="white" opacity="0.1"></rect>
+        <rect x="90" y="78" width="50" height="1" fill="#00D4FF"></rect>
+      </svg>
+    </a>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="avatar">
+        <svg width="180" height="180" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="15" width="6" height="6" rx="1" fill="#00D4FF" fill-opacity="0.2"></rect>
+          <rect x="79" y="79" width="6" height="6" rx="1" fill="#00D4FF" fill-opacity="0.2"></rect>
+          <path d="M22 30C18 30 15 33 15 37V46C15 48 13 50 11 50C13 50 15 52 15 54V63C15 67 18 70 22 70" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round" opacity="0.6"></path>
+          <path d="M78 30C82 30 85 33 85 37V46C85 48 87 50 89 50C87 50 85 52 85 54V63C85 67 82 70 78 70" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round" opacity="0.6"></path>
+          <path d="M70 38V32H35V68H65V52H52" stroke="#00D4FF" stroke-width="4.5" stroke-linejoin="round" opacity="0.4"></path>
+          <path d="M32 32H55C62 32 67 37 67 43.5C67 50 62 55 55 55H32V68" stroke="#00D4FF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M52 55L67 68" stroke="#00D4FF" stroke-width="9" stroke-linecap="round"></path>
+          <rect x="70" y="52" width="6" height="6" fill="#00D4FF"></rect>
+        </svg>
+      </div>
+      <h1>Olá, eu sou <span>Rodrigo Gonzalez</span></h1>
+      <p class="role">Desenvolvedor Full Stack</p>
+      <p>Apaixonado por criar soluções elegantes e funcionais. Transformo ideias em código limpo e experiências digitais incríveis.</p>
+      <div class="btn-group">
+        <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+        <a href="#contato" class="btn btn-outline">Entrar em Contato</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <h2 class="section-title"><span>#</span> Sobre Mim</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Sou um desenvolvedor apaixonado por tecnologia com 8 anos de experiência. Gosto de resolver problemas complexos com soluções simples e eficientes.</p>
+        <p>Quando não estou codando, gosto de viajar, ler, fazer impressão 3D e contribuir com a comunidade.</p>
+      </div>
+      <ul class="info-list">
+        <!--li><strong>📍 Localização:</strong> Sua Cidade, Brasil</li-->
+        <li><strong>🎓 Faculdade:</strong> Sistemas de informação</li>
+        <li><strong>🎓 Pós:</strong> Gestão de TI</li>
+        <!--li><strong>💼 Disponível:</strong> Para oportunidades</li-->
+        <li><strong>🌐 Idiomas:</strong> Português, Espanhol, Inglês</li>
+        <li><strong>📧 Email:</strong> rodrigo@gonzalezz.info</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title"><span>#</span> Habilidades</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML/CSS">
+        </div>
+        <p>HTML / CSS</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
+        </div>
+        <p>Flutter</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart">
+        </div>
+        <p>Dart</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+        </div>
+        <p>C++</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+        </div>
+        <p>PHP</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+        </div>
+        <p>SQL</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <svg width="48" height="48" viewBox="0 0 95.52 97.94" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#5ce500" d="M95.52,29.33h0v51a3.93,3.93,0,0,1-1.78,3.08l-1.67,1L79.35,91.76l-8.59,5-1.78,1V42.6L21.23,15,43.91,1.93,46,0.74a3.94,3.94,0,0,1,3.56,0L81,18.9l14.51,8.38v2.05ZM58.36,48.72l-9.79-5.66L25.66,29.83a4,4,0,0,0-3.56,0L1.77,41.57,0,42.6,34.49,62.51v39.83l20.3-11.73,1.79-1a3.94,3.94,0,0,0,1.78-3.08V48.72ZM0,82.43L23.86,96.21V68.63Z"></path>
+          </svg>
+        </div>
+        <p>Progress 4GL</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git/GitHub">
+        </div>
+        <p>Git / GitHub</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+        </div>
+        <p>Docker</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <h2 class="section-title"><span>#</span> Projetos</h2>
+    <div id="projectsGrid" class="projects-grid">
+      <div class="loading-projects">⏳ Carregando projetos...</div>
+    </div>
+    <div id="pagination" class="pagination" style="display: none;">
+      <button id="prevBtn" onclick="changePage(-1)">← Anterior</button>
+      <span class="page-info">Página <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+      <button id="nextBtn" onclick="changePage(1)">Próximo →</button>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <h2 class="section-title"><span>#</span> Contato</h2>
+    <div class="contact-wrapper">
+      <p>Estou aberto a novas oportunidades, freelas ou apenas uma boa conversa sobre tecnologia. Me manda uma mensagem! 🚀</p>
+      <div class="contact-links">
+        <a href="mailto:rodrigo@gonzalezz.info" class="contact-link">
+          <span class="icon">📧</span>
+          <div><strong>Email</strong><br><span>rodrigo@gonzalezz.info</span></div>
+        </a>
+        <a href="https://www.linkedin.com/in/gonzalezz/" class="contact-link">
+          <span class="icon">💼</span>
+          <div><strong>LinkedIn</strong><br><span>linkedin.com/in/gonzalezz</span></div>
+        </a>
+        <a href="https://github.com/gonzalezzinfo" class="contact-link">
+          <span class="icon">🐙</span>
+          <div><strong>GitHub</strong><br><span>github.com/gonzalezzinfo</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Feito com ❤️ e muito ☕ por <strong>Rodrigo Gonzalez</strong> · 2026</p>
+  </footer>
+
+  <script>
+    let currentPage = 1;
+    let totalPages = 1;
+
+    function loadProjects(page = 1) {
+      const projectsGrid = document.getElementById('projectsGrid');
+      projectsGrid.innerHTML = '<div class="loading-projects">⏳ Carregando projetos...</div>';
+
+      fetch(`api/projects.php?action=list&page=${page}&limit=6`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && data.data) {
+            currentPage = data.pagination.current_page;
+            totalPages = data.pagination.total_pages;
+
+            if (data.data.length === 0) {
+              projectsGrid.innerHTML = '<div class="error-message">Nenhum projeto encontrado.</div>';
+              document.getElementById('pagination').style.display = 'none';
+              return;
+            }
+
+            projectsGrid.innerHTML = '';
+
+            data.data.forEach(project => {
+              const card = document.createElement('div');
+              card.className = 'project-card';
+              card.onclick = () => window.location.href = `project-detail.html?id=${project.id}`;
+
+              const tagsHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+              const demoLink = project.demo_url
+                ? `<a href="${project.demo_url}" target="_blank" onclick="event.stopPropagation()">🔗 Demo</a>`
+                : '';
+
+              const githubLink = project.github_url
+                ? `<a href="${project.github_url}" target="_blank" onclick="event.stopPropagation()">📁 GitHub</a>`
+                : '';
+
+              card.innerHTML = `
+                <h3>${project.icon} ${project.title}</h3>
+                <p>${project.short_description}</p>
+                <div class="tags">${tagsHTML}</div>
+                <div class="project-links">
+                  ${demoLink}
+                  ${githubLink}
+                </div>
+              `;
+
+              projectsGrid.appendChild(card);
+            });
+
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('prevBtn').disabled = !data.pagination.has_prev;
+            document.getElementById('nextBtn').disabled = !data.pagination.has_next;
+            document.getElementById('pagination').style.display = totalPages > 1 ? 'flex' : 'none';
+          } else {
+            projectsGrid.innerHTML = '<div class="error-message">❌ Erro ao carregar projetos.</div>';
+            document.getElementById('pagination').style.display = 'none';
+          }
+        })
+        .catch(error => {
+          console.error('Error loading projects:', error);
+          projectsGrid.innerHTML = '<div class="error-message">❌ Erro ao carregar projetos. Por favor, tente novamente.</div>';
+          document.getElementById('pagination').style.display = 'none';
+        });
+    }
+
+    function changePage(direction) {
+      const newPage = currentPage + direction;
+      if (newPage >= 1 && newPage <= totalPages) {
+        loadProjects(newPage);
+        document.getElementById('projetos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects(1);
+    });
+  </script>
+
+</body>
+</html>
